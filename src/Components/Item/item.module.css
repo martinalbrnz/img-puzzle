@@ -5,10 +5,6 @@
 	max-height: 60px;
 	min-width: 60px;
 	min-height: 60px;
-	color: white;
-	background-color: blue;
-	font-size: 30px;
 	align-items: center;
 	flex: 0 0 150px;
-	border-radius: 2px;
 }

@@ -1,16 +1,49 @@
-.table {
+.puzzleContainer {
+	display: flex;
+	flex-direction: column;
+	margin: 10px auto;
+	padding: 10px 10px;
+	background-color: #ddd;
+	width: fit-content;
+	border-radius: 5px;
+}
+
+.puzzleTitle {
+	font-size: 20px;
+}
+
+.table, .landscape {
 	margin: 20px auto;
 	display: flex;
-	width: calc(61px * 6 - 1px);
+	width: calc(60px * 6);
 	flex-wrap: wrap;
-	gap: 1px;
+}
+
+.buttonsContainer {
+	display: flex;
+	width: 360px;
+	margin: 0 auto;
+	gap: 4px;
+	justify-content: space-between;
+
+}
+
+.undoButton, .showButton {
+	padding: 12px 10px;
+	width: 50%;
+	margin: auto;
+	font-weight: 700;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .undoButton {
-	padding: 12px 30px;
-	margin: auto;
-	color: white;
-	background-color: blue;
-	border-radius: 5px;
-	width: fit-content;
+	background-color: white;
+	border: 1px solid red;
+	color: red;
+}
+
+.showButton {
+	background-color: #bbffbb;
+	border: 1px solid #99ff99;
 }

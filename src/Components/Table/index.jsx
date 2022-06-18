@@ -9,6 +9,7 @@ const Table = () => {
   const [puzzle, setPuzzle] = useState([]);
   const [moves, setMoves] = useState([]);
   const [showLandscape, setShowLandscape] = useState(false);
+  const [showNumbers, setShowNumbers] = useState(false);
   
 	useEffect(() => {
     shuffleValues();
@@ -82,6 +83,10 @@ const Table = () => {
     setShowLandscape(!showLandscape);
   };
 
+  const toggleShowNumbers = () => {
+    setShowNumbers(!showNumbers);
+  };
+
 	const undoSwap = () => {
 		if (moves.length > 0) {
 			setPuzzle(moves[moves.length-1])
@@ -95,7 +100,12 @@ const Table = () => {
 				? <WinnerModal onMoves={moves.length} playAgain={shuffleValues} />
 				: null
       }
-			<h1 className={styles.puzzleTitle}>Moves: {moves.length}</h1>
+      <div className={styles.puzzleHeader}>
+        <h1 className={styles.puzzleTitle}>Moves: {moves.length}</h1>
+        <p onClick={() => toggleShowNumbers()} className={styles.showNumbers}>
+          {showNumbers ? 'Hide' : 'Show'} numbers
+        </p>
+      </div>
       { showLandscape
       ? <img 
         src={require('../../assets/frames/landscape-full.png')}
@@ -104,7 +114,12 @@ const Table = () => {
       />
       : <div className={styles.table}>
         {puzzle.map((item) => (
-          <Item number={item} key={`${item}D`} swap={swapValues} />
+          <Item
+            number={item}
+            key={`${item}D`}
+            swap={swapValues}
+            showNumbers={showNumbers}
+          />
         ))}
       </div>}
       <div className={styles.buttonsContainer}>

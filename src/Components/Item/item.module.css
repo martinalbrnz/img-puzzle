@@ -1,3 +1,10 @@
+.imgContainer {
+	max-width: 60px;
+	max-height: 60px;
+	min-width: 60px;
+	min-height: 60px;
+}
+
 .item {
 	display: flex;
 	justify-content: center;
@@ -7,4 +14,12 @@
 	min-height: 60px;
 	align-items: center;
 	flex: 0 0 150px;
+}
+
+.cardNumber {
+	color: #f44;
+	font-weight: 600;
+	position: relative;
+	top: -60px;
+	cursor: pointer;
 }

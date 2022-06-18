@@ -1,9 +1,24 @@
 import styles from '../Item/item.module.css';
-// import * as frame from '../../assets/frames';
 
 const Item = (props) => {
-	const { number, swap } = props;
-	return <img src={require(`../../assets/frames/landscape-${number}.png`)} className={styles.item} key={number} onClick={() => swap(number)} alt={`Frame ${number} of a landscape from Isla Victoria`} />
+	const { showNumbers, number, swap } = props;
+	return (
+		<div
+			className={styles.imgContainer}
+			onClick={() => swap(number)}
+		>
+			<img
+				key={number}
+				src={require(`../../assets/frames/landscape-${number}.png`)}
+				alt={`Frame ${number} of a landscape from Isla Victoria`} 
+				className={styles.item}
+			/>
+
+			{showNumbers
+				? <p className={styles.cardNumber}>{number !== 'void' ? number : ''}</p>
+				: null
+			}
+		</div>)
 };
 
 export default Item;

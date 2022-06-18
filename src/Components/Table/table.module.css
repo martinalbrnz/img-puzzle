@@ -8,8 +8,25 @@
 	border-radius: 5px;
 }
 
+.puzzleHeader {
+	display: flex;
+	padding: 0 4px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.showNumbers {
+	line-height: 20px;
+	border: 1px solid #666;
+	color: #666;
+	width: 120px;
+	border-radius: 5px;
+	padding: 4px;
+}
+
 .puzzleTitle {
 	font-size: 20px;
+	line-height: 20px;
 }
 
 .table, .landscape {

@@ -1,0 +1,11 @@
+.item {
+	display: flex;
+	justify-content: center;
+	width: 150px;
+	height: 150px;
+	color: white;
+	background-color: blue;
+	font-size: 30px;
+	align-items: center;
+	flex: 0 0 150px;
+}

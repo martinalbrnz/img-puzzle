@@ -1,0 +1,14 @@
+.table {
+	margin: 20px auto;
+	display: flex;
+	flex-wrap: wrap;
+	width: 606px;
+	gap: 2px;
+}
+
+.undoButton {
+	padding: 12px 30px;
+	background-color: blue;
+	align-self: center;
+	width: fit-content;
+}

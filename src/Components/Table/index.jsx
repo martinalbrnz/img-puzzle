@@ -3,32 +3,32 @@ import Item from '../Item';
 import styles from '../Table/table.module.css';
 import WinnerModal from '../WinnerModal';
 
-const initPuzzle = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const finishedPuzzle = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, '-'];
-
-const swapPieces = (puzzle, mobile, swapped) => {
-  let newPuzzle = [];
-
-  for (let i = 0; i < puzzle.length; i++) {
-    if (i !== mobile && i !== swapped) {
-      newPuzzle = [...newPuzzle, puzzle[i]];
-    } else if (i === mobile) {
-      newPuzzle = [...newPuzzle, puzzle[swapped]];
-    } else {
-      newPuzzle = [...newPuzzle, "-"];
-    }
-  }
-  return newPuzzle;
-};
+const initPuzzle = [...Array(35).keys()];
+const finishedPuzzle = [...Array(35).keys(), '-'];
 
 const Table = () => {
   const [puzzle, setPuzzle] = useState([]);
   const [moves, setMoves] = useState([]);
-
+  
 	useEffect(() => {
-		shuffleValues();
+    shuffleValues();
 	}, []);
 
+  const swapPieces = (puzzle, mobile, swapped) => {
+    let newPuzzle = [];
+  
+    for (let i = 0; i < puzzle.length; i++) {
+      if (i !== mobile && i !== swapped) {
+        newPuzzle = [...newPuzzle, puzzle[i]];
+      } else if (i === mobile) {
+        newPuzzle = [...newPuzzle, puzzle[swapped]];
+      } else {
+        newPuzzle = [...newPuzzle, "-"];
+      }
+    }
+    return newPuzzle;
+  };
+  
 	const comparePuzzle = (finished, current) => {
 		for (let i = 0 ; i < finished.length; i++) {
 			if (finished[i] !== current[i]) {
@@ -38,7 +38,7 @@ const Table = () => {
 		return true;
 	};
 	
-	// Implementation of the Shuffle-Yates algorithm
+	// Implementation of the shuffle algorithm Fisher-Yates
 	const shuffleValues = () => {
 		const values = [...initPuzzle];
 		
@@ -53,13 +53,14 @@ const Table = () => {
 		setPuzzle([...values, '-']);
 	}
 
+  // Swap values only if they are adjacent to the -
   const swapValues = (item) => {
     if (item !== '-') {
       const emptyPiece = puzzle.indexOf('-');
       const swappedPiece = puzzle.indexOf(item);
       // same row
       if (
-        Math.floor(emptyPiece / 4) === Math.floor(swappedPiece / 4) &&
+        Math.floor(emptyPiece / 6) === Math.floor(swappedPiece / 6) &&
         (emptyPiece + 1 === swappedPiece || emptyPiece - 1 === swappedPiece)
       ) {
         setPuzzle(swapPieces(puzzle, emptyPiece, swappedPiece));
@@ -67,8 +68,8 @@ const Table = () => {
       }
       // same column
       if (
-        emptyPiece % 4 === swappedPiece % 4 &&
-        (emptyPiece + 4 === swappedPiece || emptyPiece - 4 === swappedPiece)
+        emptyPiece % 6 === swappedPiece % 6 &&
+        (emptyPiece + 6 === swappedPiece || emptyPiece - 6 === swappedPiece)
       ) {
         setPuzzle(swapPieces(puzzle, emptyPiece, swappedPiece));
 				setMoves([...moves, puzzle]);
